@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nathalie Lebouin – Marketing & Communication</title>
+<meta name="description" content="Portfolio de Nathalie Lebouin, marketing et communication en Guadeloupe : marketing digital, community management, brand content, identité visuelle, vidéo.">
+<meta property="og:title" content="Nathalie Lebouin – Portfolio">
+<meta property="og:image" content="images/qui-suis-je.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: éditorial, confiant, mode — un magazine de créa
+   IDEA: une couverture de magazine qu'on feuillette au défilement
+   PICTURE: nom géant qui se révèle, réalisations qui défilent à l'horizontale
+   COLOUR and TYPE: noir #0b0b0b, blanc, rose #ff4fa3 en accent ; Syne + Inter
+   LAYOUT: bandes pleine largeur alternant noir et blanc */
+:root{color-scheme:light;--noir:#0b0b0b;--blanc:#fafafa;--rose:#ff4fa3;--gris:#8a8a8a;--trait:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px;overflow-x:hidden}
+body{font:16px/1.6 Inter,system-ui,sans-serif;background:var(--noir);color:var(--blanc);overflow-x:clip}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.syne{font-family:Syne,"Arial Black",sans-serif}
+.band{padding:clamp(70px,10vw,140px) max(5vw,20px)}
+.inner{max-width:1240px;margin:0 auto}
+
+/* Chargement */
+.loader{position:fixed;inset:0;background:var(--noir);z-index:100;display:grid;place-items:center;transition:transform .9s cubic-bezier(.77,0,.18,1)}
+.loader span{font:800 clamp(3rem,10vw,6rem) Syne,sans-serif;letter-spacing:-2px}
+.loader span i{color:var(--rose);font-style:normal}
+.loaded .loader{transform:translateY(-100%)}
+
+/* Barre de progression + navigation */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--rose);width:0;z-index:60}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px max(5vw,20px);mix-blend-mode:difference;color:#fff}
+nav .nom{font:800 1.1rem Syne,sans-serif}
+nav .liens{display:flex;gap:clamp(12px,3vw,32px);font-size:.9rem;font-weight:500}
+nav .liens a{position:relative}
+nav .liens a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s}
+nav .liens a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* Hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px max(5vw,20px) 50px;position:relative;overflow:hidden}
+.hero .dispo{display:inline-flex;align-items:center;gap:10px;font-size:.9rem;color:#cfcfcf;margin-bottom:28px}
+.hero .dispo b{width:9px;height:9px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 0 var(--rose);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.geant{font:800 clamp(2.6rem,8vw,7rem)/.9 Syne,sans-serif;letter-spacing:-.04em;text-transform:uppercase}
+.geant .ligne{display:block;overflow:hidden}
+.geant .ligne span{display:inline-block;transform:translateY(105%);transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.geant .ligne:nth-child(2) span{transition-delay:.12s}
+.geant .contour{color:transparent;-webkit-text-stroke:2px var(--blanc)}
+.loaded .geant .ligne span{transform:none}
+.hero .bas{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:40px;flex-wrap:wrap}
+.hero .bas p{max-width:430px;font-size:1.1rem;color:#cfcfcf}
+.hero .bas p strong{color:#fff;font-weight:600}
+.rond{width:clamp(120px,14vw,170px);aspect-ratio:1;border-radius:50%;overflow:hidden;position:relative;flex:none}
+.rond img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .5s}
+.rond:hover img{filter:none}
+.scroll-ind{position:absolute;right:max(5vw,20px);top:50%;writing-mode:vertical-rl;font-size:.75rem;color:var(--gris);display:flex;align-items:center;gap:12px}
+.scroll-ind::after{content:"";width:1px;height:60px;background:linear-gradient(var(--rose),transparent);animation:descend 2s infinite}
+@keyframes descend{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* Bandeau défilant */
+.marquee{background:var(--rose);color:var(--noir);overflow:hidden;padding:18px 0;transform:rotate(-2deg) scale(1.05);margin:20px 0}
+.marquee .piste{display:flex;width:max-content;animation:defile 22s linear infinite}
+.marquee span{font:800 clamp(1.4rem,3.5vw,2.4rem) Syne,sans-serif;text-transform:uppercase;padding-right:40px;white-space:nowrap}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* À propos */
+.blanc{background:var(--blanc);color:var(--noir)}
+.etiquette{font-size:.85rem;font-weight:600;color:var(--rose);margin-bottom:24px;display:block}
+.manifeste{font:600 clamp(1.6rem,3.6vw,3rem)/1.2 Syne,sans-serif;letter-spacing:-.02em;max-width:1050px}
+.manifeste .m{color:#cfcfcf;transition:color .3s}
+.manifeste .m.on{color:var(--noir)}
+.manifeste .m.rose.on{color:var(--rose)}
+.apropos-grille{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,6vw,90px);margin-top:clamp(50px,8vw,100px);align-items:center}
+.photo-rev{overflow:hidden;border-radius:6px;clip-path:inset(100% 0 0 0);transition:clip-path 1.3s cubic-bezier(.77,0,.18,1)}
+.photo-rev.vu{clip-path:inset(0 0 0 0)}
+.photo-rev img{width:100%;aspect-ratio:4/5;object-fit:cover;transform:scale(1.25);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.photo-rev.vu img{transform:scale(1)}
+.apropos-grille p{font-size:1.08rem;color:#3a3a3a;margin-bottom:18px;max-width:520px}
+.qualites{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.qualites span{border:1.5px solid var(--noir);border-radius:99px;padding:8px 18px;font-size:.88rem;font-weight:500;transition:background .3s,color .3s}
+.qualites span:hover{background:var(--noir);color:#fff}
+
+/* Réalisations : défilement horizontal */
+.real-tete{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:50px}
+.titre{font:800 clamp(2.4rem,7vw,6rem)/.95 Syne,sans-serif;letter-spacing:-.03em;text-transform:uppercase}
+.titre em{font-style:normal;color:var(--rose)}
+.real-tete p{color:var(--gris);max-width:360px}
+.h-zone{position:relative}
+.h-collant{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+.h-piste{display:flex;gap:28px;padding:0 max(5vw,20px);will-change:transform}
+.proj{flex:none;width:clamp(260px,26vw,360px);cursor:pointer}
+.proj.large{width:clamp(320px,52vw,720px)}
+.proj .cadre{overflow:hidden;border-radius:6px;background:#1a1a1a;height:min(58vh,480px);position:relative}
+.proj .cadre img,.proj .cadre video{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .6s}
+.proj.large .cadre img{object-fit:contain;background:#fff}
+.proj:hover .cadre img{transform:scale(1.06)}
+.proj .num{position:absolute;top:14px;left:14px;font-size:.75rem;font-weight:600;background:rgba(11,11,11,.75);backdrop-filter:blur(6px);padding:5px 10px;border-radius:99px}
+.proj .num.reel{background:var(--rose);color:var(--noir)}
+.proj h3{font:800 1.25rem Syne,sans-serif;margin-top:16px}
+.proj p{font-size:.9rem;color:var(--gris);margin-top:4px}
+.proj .outils-mini{font-size:.78rem;color:#bdbdbd;margin-top:8px}
+.proj ul{font-size:.9rem;color:var(--gris);margin:6px 0 0 18px}
+
+/* Outils */
+.liste-outils{border-top:1px solid var(--trait);margin-top:50px}
+.outil{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px;align-items:center;padding:26px 10px;border-bottom:1px solid var(--trait);position:relative;overflow:hidden}
+.outil::before{content:"";position:absolute;inset:0;background:var(--rose);transform:translateY(101%);transition:transform .5s cubic-bezier(.77,0,.18,1);z-index:0}
+.outil:hover::before{transform:none}
+.outil>*{position:relative;z-index:1;transition:color .4s}
+.outil h3{font:800 clamp(1.5rem,3.5vw,2.6rem) Syne,sans-serif;text-transform:uppercase;letter-spacing:-.02em}
+.outil p{color:#bdbdbd}
+.outil:hover h3,.outil:hover p{color:var(--noir)}
+.sac{margin-top:60px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sac strong{margin-right:10px}
+.sac span{border:1px solid var(--trait);border-radius:99px;padding:7px 16px;font-size:.88rem;color:#cfcfcf}
+
+/* Contact */
+.contact{text-align:center;min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.contact .titre{font-size:clamp(2.3rem,7.5vw,6.5rem)}
+.contact .sous{color:#3a3a3a;margin:24px 0 40px;max-width:480px}
+.mail{font:800 clamp(1.1rem,3.4vw,2.2rem) Syne,sans-serif;border-bottom:3px solid var(--rose);padding-bottom:4px;transition:color .3s;overflow-wrap:anywhere}
+.mail:hover{color:var(--rose)}
+.tel{margin-top:18px;font-size:1.1rem;font-weight:500;white-space:nowrap}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:26px max(5vw,20px);font-size:.82rem;color:var(--gris);border-top:1px solid var(--trait)}
+
+/* Expertises, parcours, apprentissage */
+.expertises{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:2px;margin-top:50px;background:var(--trait)}
+.exp{background:var(--noir);padding:34px 28px;transition:background .4s}
+.exp:hover{background:#161616}
+.exp span{color:var(--rose);font-weight:600;font-size:.85rem}
+.exp h3{font:800 1.5rem Syne,sans-serif;margin:14px 0 10px}
+.exp p{color:#bdbdbd;font-size:.95rem}
+.frise{margin-top:50px;border-left:1px solid var(--trait)}
+.etape{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:22px 0 22px 30px;position:relative}
+.etape::before{content:"";position:absolute;left:-6px;top:30px;width:11px;height:11px;border-radius:50%;background:var(--rose)}
+.etape time{color:var(--gris);font-weight:500;white-space:nowrap}
+.etape h3{font:800 clamp(1.2rem,2.4vw,1.7rem) Syne,sans-serif}
+.etape p{color:#bdbdbd}
+.apprend{margin-top:70px}
+.apprend-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px}
+.apprend-grille>div{border:1.5px solid var(--rose);border-radius:6px;padding:28px}
+.apprend-grille h3{font:800 1.6rem Syne,sans-serif;margin-bottom:8px}
+.apprend-grille p{color:#cfcfcf}
+@media (max-width:600px){.etape{grid-template-columns:1fr;gap:2px}}
+
+/* Apparitions au défilement */
+.js .reveal{opacity:0;transform:translateY(50px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.vu{opacity:1;transform:none}
+
+/* Directions d'apparition */
+.js .reveal.gauche{transform:translateX(-90px)}
+.js .reveal.droite{transform:translateX(90px)}
+.js .reveal.bas{transform:translateY(70px)}
+.js .reveal.zoom{transform:scale(.88)}
+.js .reveal.vu{opacity:1;transform:none}
+.photo-rev[data-dir=gauche]{clip-path:inset(0 100% 0 0)}
+.photo-rev.vu{clip-path:inset(0 0 0 0)}
+.glisse{will-change:transform;white-space:nowrap}
+@media (max-width:900px){.js .proj-alt:nth-child(odd){transform:translateX(-70px)}.js .proj-alt:nth-child(even){transform:translateX(70px)}.js .proj-alt.vu{transform:none}.glisse{white-space:normal}}
+.metier{font:800 clamp(1.1rem,2.2vw,1.6rem)/1.3 Syne,sans-serif;height:1.3em;overflow:hidden;display:block;margin-bottom:6px}
+.metier>i{display:block;font-style:normal;animation:roule 9s infinite}
+.metier>i>span{display:block;height:1.3em;white-space:nowrap;color:var(--rose)}
+@keyframes roule{0%,28%{transform:translateY(0)}33%,61%{transform:translateY(-1.3em)}66%,94%{transform:translateY(-2.6em)}100%{transform:translateY(-3.9em)}}
+.cta{display:inline-flex;align-items:center;background:var(--rose);color:var(--noir);font-weight:600;padding:16px 28px;border-radius:99px;transition:transform .3s;white-space:nowrap}
+.cta:hover{transform:translateX(6px)}
+
+/* What's in my bag */
+.bag{background:var(--blanc);color:var(--noir);position:relative;overflow:hidden;padding:clamp(80px,10vw,130px) max(5vw,20px)}
+.bag-titre{font:800 clamp(4rem,14vw,13rem)/.9 Syne,sans-serif;text-transform:uppercase;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px #d9d9d9;position:absolute;top:50%;left:0;margin-top:-.45em;white-space:nowrap;pointer-events:none}
+.bag-intro{position:relative;max-width:1240px;margin:0 auto 20px}
+.bag-intro p{font:600 clamp(1.3rem,2.6vw,2rem)/1.25 Syne,sans-serif;max-width:640px}
+.bag-intro strong{color:var(--rose)}
+.scene{position:relative;max-width:1240px;margin:0 auto;height:min(78vh,700px)}
+.pastille{position:absolute;left:50%;top:50%;width:clamp(130px,15vw,190px);aspect-ratio:1;margin:calc(clamp(130px,15vw,190px)/-2) 0 0 calc(clamp(130px,15vw,190px)/-2);border-radius:50%;background:var(--rose);display:grid;place-items:center;text-align:center;font:800 clamp(1rem,1.6vw,1.3rem)/1.05 Syne,sans-serif;text-transform:uppercase;transform:scale(0) rotate(-90deg);transition:transform 1s cubic-bezier(.34,1.56,.64,1) .9s}
+.pastille::before{content:"";position:absolute;inset:-14px;border:1.5px dashed var(--rose);border-radius:50%;animation:tourne 14s linear infinite}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.scene.vu .pastille{transform:none}
+.item{position:absolute;left:var(--x);top:var(--y);width:var(--w);margin:0;z-index:1}
+.item .vole{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(.5);transition:transform 1.4s cubic-bezier(.2,.8,.2,1) var(--d),opacity .8s var(--d)}
+.scene.vu .item .vole{opacity:1;transform:rotate(var(--r2))}
+.item img{width:100%;animation:flotte var(--f) ease-in-out infinite alternate;filter:drop-shadow(0 25px 22px rgba(0,0,0,.18));transition:scale .5s,rotate .5s;cursor:pointer}
+@keyframes flotte{from{translate:0 -10px}to{translate:0 12px}}
+.item:hover{z-index:3}
+.item:hover img{scale:1.12;rotate:calc(var(--r2) * -1)}
+.item figcaption{position:absolute;left:50%;bottom:-8px;transform:translate(-50%,10px);background:var(--noir);color:#fff;padding:8px 14px;border-radius:10px;font-size:.8rem;line-height:1.3;white-space:nowrap;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;text-align:center}
+.item figcaption b{display:block;font:800 .95rem Syne,sans-serif;color:var(--rose)}
+.item:hover figcaption,.item.touche figcaption{opacity:1;transform:translate(-50%,0)}
+@media (max-width:900px){
+  .scene{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:50px 20px;padding-top:30px}
+  .pastille{position:relative;left:auto;top:auto;margin:0 auto;grid-column:1/-1;order:3}
+  .item{position:relative;left:auto;top:auto;width:auto;max-width:170px;justify-self:center}
+  .item figcaption{opacity:1;transform:translate(-50%,0);position:relative;left:50%;bottom:auto;margin-top:12px;display:inline-block;white-space:normal;width:max-content;max-width:170px}
+  .item:nth-child(n+5){order:4}
+  .bag-titre{display:none}
+  .item img{width:auto;max-width:100%;max-height:170px;margin:0 auto}
+}
+
+/* Parcours en zigzag avec fond qui change */
+.frise-zone{--f:#0b0b0b;--t:#fafafa;--l:rgba(255,255,255,.18);background:var(--f);color:var(--t);transition:background-color .9s ease,color .9s ease;padding:clamp(80px,10vw,130px) max(5vw,20px)}
+.frise-zone[data-fond="1"]{--f:#ff4fa3;--t:#0b0b0b;--l:rgba(11,11,11,.25)}
+.frise-zone[data-fond="2"]{--f:#fafafa;--t:#0b0b0b;--l:rgba(11,11,11,.18)}
+.frise-zone[data-fond="3"]{--f:#1c1c1c;--t:#fafafa;--l:rgba(255,255,255,.18)}
+.frise-zone[data-fond="4"]{--f:#f6d4e6;--t:#0b0b0b;--l:rgba(11,11,11,.2)}
+.frise-zone .etiquette{color:inherit;opacity:.7}
+.frise-zone .titre em{color:transparent;-webkit-text-stroke:2px var(--t)}
+.frise-tete{max-width:1240px;margin:0 auto 40px;text-align:center}
+.zz{position:relative;max-width:1100px;margin:0 auto}
+.zz-ligne{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--l);transition:background .9s}
+.zz-ligne i{position:absolute;left:0;top:0;width:100%;height:0;background:currentColor}
+.zz-etape{min-height:68vh;display:flex;align-items:center;justify-content:flex-start;position:relative}
+.zz-etape.droite{justify-content:flex-end}
+.zz-etape::before{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--f);border:3px solid currentColor;transition:background .9s,transform .5s;z-index:1}
+.zz-etape.actif::before{background:currentColor;transform:scale(1.3)}
+.zz-carte{width:calc(50% - 60px);position:relative}
+.zz-an{display:block;font:800 clamp(3.5rem,9vw,7.5rem)/.9 Syne,sans-serif;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:2px var(--t);margin-bottom:14px}
+.zz-etape.actif .zz-an{color:var(--t);transition:color .6s .3s}
+.zz-carte time{font-size:.82rem;font-weight:600;text-transform:none;opacity:.7}
+.zz-carte h3{font:800 clamp(1.4rem,2.6vw,2.1rem)/1.15 Syne,sans-serif;margin:4px 0 6px}
+.zz-lieu{font-weight:600;margin-bottom:8px}
+.zz-carte p:not(.zz-lieu){opacity:.8;max-width:420px}
+.zz-etape.droite .zz-carte{text-align:right}
+.zz-etape.droite .zz-carte p{margin-left:auto}
+@media (max-width:900px){
+  .zz-ligne{left:8px}
+  .zz-etape,.zz-etape.droite{justify-content:flex-start;min-height:60vh;padding-left:40px}
+  .zz-etape::before{left:9px}
+  .zz-carte{width:100%}
+  .zz-etape.droite .zz-carte{text-align:left}
+  .zz-etape.droite .zz-carte p{margin-left:0}
+}
+
+/* Curseur personnalisé (ordinateur) */
+.curseur{position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:90;transform:translate(-50%,-50%);transition:width .3s,height .3s;display:none}
+.curseur.grand{width:80px;height:80px}
+@media (hover:hover) and (pointer:fine){.curseur{display:block}}
+
+/* Visionneuse */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;z-index:95;padding:20px;cursor:zoom-out}
+.lightbox.ouvert{display:flex;animation:fondu .3s}
+.lightbox img{max-height:90vh;max-width:95vw;border-radius:6px}
+@keyframes fondu{from{opacity:0}}
+
+/* Téléphone : réalisations en colonne */
+@media (max-width:900px){
+  .h-collant{position:static;height:auto;display:block}
+  .h-piste{flex-direction:column;gap:50px;transform:none!important}
+  .proj,.proj.large{width:100%}
+  .proj .cadre{height:auto}
+  .proj .cadre img,.proj .cadre video{height:auto;max-height:75vh}
+  .apropos-grille{grid-template-columns:1fr}
+  .outil{grid-template-columns:1fr;gap:4px}
+  .scroll-ind{display:none}
+  nav .liens a.cache{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+  .photo-rev,.photo-rev[data-dir=gauche]{clip-path:none}.item .vole{opacity:1!important}.pastille{transform:none!important}.js .reveal{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<div class="loader"><span>N<i>.</i>L</span></div>
+<div class="progress" id="progress"></div>
+<div class="curseur" id="curseur"></div>
+
+<nav>
+  <a href="#" class="nom">N.Lebouin</a>
+  <div class="liens">
+    <a href="#apropos" class="cache">À propos</a>
+    <a href="#parcours" class="cache">Parcours</a>
+    <a href="#realisations">Projets</a>
+    <a href="#outils" class="cache">Outils</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="dispo"><b></b>Disponible pour un poste en marketing & communication</span>
+  <h1 class="geant">
+    <span class="ligne"><span>Nathalie</span></span>
+    <span class="ligne"><span class="contour">Lebouin</span></span>
+  </h1>
+  <div class="bas">
+    <p><span class="metier"><i><span>Marketing digital</span><span>Communication</span><span>Création de contenu</span><span>Marketing digital</span></i></span> Je conçois des campagnes, des contenus et des visuels qui font connaître les marques et donnent envie d'acheter.</p>
+    <a href="#realisations" class="cta">Voir mes projets →</a>
+  </div>
+  <span class="scroll-ind">Défiler</span>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="piste">
+  <span>Marketing digital ✦ Communication ✦ Community management ✦ Brand content ✦ Identité visuelle ✦ Vidéo ✦</span>
+  <span>Marketing digital ✦ Communication ✦ Community management ✦ Brand content ✦ Identité visuelle ✦ Vidéo ✦</span>
+</div></div>
+
+<section id="apropos" class="band blanc">
+  <div class="inner">
+    <span class="etiquette reveal gauche">(Qui suis-je ?)</span>
+    <p class="manifeste" id="manifeste">Créative, curieuse et autodidacte, j'ai toujours été attirée par l'univers du digital. Le marketing et la communication se sont imposés comme <span class="rose-mot">une évidence.</span></p>
+    <div class="apropos-grille">
+      <div class="photo-rev" data-reveal data-dir="gauche"><img src="images/qui-suis-je.jpg" alt="Nathalie Lebouin lisant un journal « Coming soon »"></div>
+      <div class="reveal droite">
+        <p>Après cinq années d'études, je souhaite aujourd'hui évoluer dans un poste qui me passionne, me ressemble et me pousse à me dépasser au quotidien.</p>
+        <p>J'aime imaginer des campagnes, des covers ou des affiches, et faire des tournages pour donner forme à mes idées. Ce portfolio évolue au fil de mes projets.</p>
+        <div class="qualites">
+          <span>Esprit autodidacte</span><span>À l'écoute</span><span>Créative</span><span>Très passionnée</span><span>Gestion du stress</span><span>Organisée</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parcours" class="band">
+  <div class="inner">
+    <h2 class="titre glisse" data-sens="1">Ce que <em>j'apporte</em></h2>
+    <div class="expertises">
+      <div class="exp reveal gauche" style="transition-delay:0.0s"><span>01</span><h3>Marketing digital</h3><p>Opérations promotionnelles, codes promo, contenus pour les réseaux sociaux et calendrier éditorial.</p></div>
+      <div class="exp reveal bas" style="transition-delay:0.1s"><span>02</span><h3>Communication</h3><p>Communication interne en grande entreprise et communication de marque, du message au support.</p></div>
+      <div class="exp reveal droite" style="transition-delay:0.2s"><span>03</span><h3>Création de contenu</h3><p>Visuels, identités visuelles, tournages et montage vidéo, de l'idée à la publication.</p></div>
+      <div class="exp reveal zoom" style="transition-delay:0.3s"><span>04</span><h3>Relation client</h3><p>Conseil, accueil et showroom : je connais le client sur le terrain.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="frise" class="frise-zone" data-fond="0">
+  <div class="frise-tete">
+    <span class="etiquette">(Mon parcours)</span>
+    <h2 class="titre">Mon <em>parcours</em></h2>
+  </div>
+  <div class="zz">
+    <div class="zz-ligne"><i id="zzRemplir"></i></div>
+    <div class="zz-etape" data-fond="1">
+      <div class="zz-carte reveal gauche">
+        <span class="zz-an">2026</span>
+        <time>Missions ponctuelles</time>
+        <h3>Community Manager & Responsable showroom</h3>
+        <p class="zz-lieu">Ecilsworldshop</p>
+        <p>Affiches promo, vidéos de teasing, tournages d'ateliers et accueil en showroom.</p>
+      </div>
+    </div>
+    <div class="zz-etape droite" data-fond="2">
+      <div class="zz-carte reveal droite">
+        <span class="zz-an">2023</span>
+        <time>Expérience</time>
+        <h3>Chargée de communication interne</h3>
+        <p class="zz-lieu">Orange</p>
+        <p>Communication auprès des équipes dans un grand groupe : Teams, SharePoint, sites internes.</p>
+      </div>
+    </div>
+    <div class="zz-etape" data-fond="3">
+      <div class="zz-carte reveal gauche">
+        <span class="zz-an">2022</span>
+        <time>Apprentissage</time>
+        <h3>Conseillère clientèle</h3>
+        <p class="zz-lieu">Love Mobile</p>
+        <p>Accueil, conseil et relation client sur le terrain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="realisations" class="band" style="padding-bottom:0">
+  <div class="inner real-tete reveal">
+    <h2 class="titre glisse" data-sens="1">Mes<br><em>réalisations</em></h2>
+    <p>Projets réels pour Ecilsworldshop et concepts créatifs. Faites défiler pour parcourir.</p>
+  </div>
+</section>
+<div class="h-zone" id="hzone">
+  <div class="h-collant">
+    <div class="h-piste" id="piste">
+      <article class="proj large reveal zoom">
+        <div class="cadre"><span class="num">Identité visuelle · Concept</span><img src="images/mimille.jpg" alt="Identité visuelle Mimille"></div>
+        <h3>Mimille, miel artisanal</h3>
+        <p>Une identité moderne et élégante, créée de A à Z, pour sortir le miel artisanal de ses codes rustiques : logo et déclinaisons, palette, typographies, mockups produits et support de présentation.</p>
+        <div class="outils-mini">Illustrator · Photoshop</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num reel">Marketing · Projet réel</span><img src="images/promo-snowy.jpg" alt="Affiche promo -20% Ecilsworldshop"></div>
+        <h3>Ecilsworldshop : affiche promo</h3>
+        <p>Opération promo 24 h avec code dédié : affiche fidèle à la DA de la marque, relayée par une vidéo de teasing.</p>
+        <div class="outils-mini">Photoshop</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num reel">Projet réel · Vidéo</span>
+          <video src="videos/teasing.mp4" poster="images/teasing-video.jpg" controls playsinline preload="none"></video></div>
+        <h3>Ecilsworldshop : teasing</h3>
+        <p>Vidéo de teasing pour annoncer la promotion.</p>
+        <div class="outils-mini">CapCut</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num reel">Projet réel · Tournage</span><video src="videos/atelier.mp4" poster="images/tournage-atelier.jpg" controls playsinline preload="none"></video></div>
+        <h3>Ecilsworldshop : atelier</h3>
+        <p>Tournage d'un atelier pour les réseaux sociaux.</p>
+        <div class="outils-mini">DJI Osmo Pocket 3</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Brand content · Concept</span><img src="images/redbull.jpg" alt="Concept publicitaire Red Bull édition mangue"></div>
+        <h3>Red Bull : édition mangue</h3>
+        <p>Visuel publicitaire pour une édition limitée.</p>
+        <div class="outils-mini">Photoshop</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Brand content · Concept</span><img src="images/kylie-1.jpg" alt="Concept de campagne King Kylie"></div>
+        <h3>KHY : King Kylie</h3>
+        <p>Visuels de campagne pour la collection de Kylie Jenner.</p>
+        <div class="outils-mini">Photoshop</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Brand content · Concept</span><img src="images/kylie-2.jpg" alt="Visuel King Kylie Collection"></div>
+        <h3>King Kylie Collection</h3>
+        <p>Déclinaison du visuel de campagne.</p>
+        <div class="outils-mini">Photoshop</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Brand content · Concept</span><img src="images/adidas.jpg" alt="Concept visuel Adidas Campus"></div>
+        <h3>Adidas Campus</h3>
+        <p>Visuel produit pour la paire iconique.</p>
+        <div class="outils-mini">Canva</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Marketing · Concept</span><img src="images/jeu-concours.jpg" alt="Visuel de jeu concours pour gagner une Toyota Yaris"></div>
+        <h3>Jeu concours : Toyota Yaris</h3>
+        <p>Visuel d'activation pour un jeu concours : un message clair et festif, pensé pour faire participer.</p>
+        <div class="outils-mini">Canva</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Brand content · Concept</span><img src="images/matcha-menu.jpg" alt="Menu Compose ton matcha"></div>
+        <h3>Matcha : « Compose ton matcha »</h3>
+        <p>Menu produit : tailles, types, extras et prix présentés de façon lisible et appétissante.</p>
+        <div class="outils-mini">Canva</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Brand content · Concept</span><img src="images/matcha-bienfaits.jpg" alt="Visuel sur les bienfaits du matcha"></div>
+        <h3>Matcha : les bienfaits</h3>
+        <p>Visuel éducatif pour les réseaux sociaux, dans la même identité que le menu.</p>
+        <div class="outils-mini">Canva</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Événementiel · Concept</span><img src="images/caribbean-party.jpg" alt="Affiche Caribbean Party Saint-Valentin"></div>
+        <h3>Caribbean Party</h3>
+        <p>Affiche de soirée Saint-Valentin : hiérarchie de l'information et ambiance.</p>
+        <div class="outils-mini">Photoshop</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Visuel artistique</span><img src="images/dream.jpg" alt="Visuel artistique Dream"></div>
+        <h3>Dream</h3>
+        <p>Le poids de porter des rêves ambitieux, encore en construction.</p>
+        <div class="outils-mini">Illustrator · Photoshop · Lightroom</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Cover d'album · Concept</span><img src="images/9th-cloud.jpg" alt="Cover fictive On the 9th Cloud"></div>
+        <h3>SZA : On the 9th Cloud</h3>
+        <p>Cover et tracklist fictives, ère « soft girl » rêveuse.</p>
+        <div class="outils-mini">Photoshop · Lightroom</div>
+      </article>
+      <article class="proj reveal proj-alt">
+        <div class="cadre"><span class="num">Retouche photo</span><img src="images/effet-givre.jpg" alt="Portrait effet vitre givrée"></div>
+        <h3>Effet givré</h3>
+        <p>Un portrait vu à travers une vitre froide, intime et brut.</p>
+        <div class="outils-mini">Photoshop</div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<section id="outils" class="band">
+  <div class="inner">
+    <h2 class="titre glisse" data-sens="-1">Mes <em>outils</em></h2>
+    <div class="liste-outils">
+      <div class="outil reveal gauche"><h3>Photoshop</h3><p>Retouche, photomontage, visuels web et réseaux sociaux.</p></div>
+      <div class="outil reveal droite"><h3>Illustrator</h3><p>Logos, illustrations vectorielles, identités visuelles.</p></div>
+      <div class="outil reveal gauche"><h3>Lightroom</h3><p>Retouche et harmonisation colorimétrique.</p></div>
+      <div class="outil reveal droite"><h3>CapCut</h3><p>Création et montage vidéo.</p></div>
+      <div class="outil reveal gauche"><h3>Canva</h3><p>Visuels et supports de présentation.</p></div>
+      <div class="outil reveal droite"><h3>Notion</h3><p>Organisation de la création de contenu, calendrier éditorial.</p></div>
+      <div class="outil reveal gauche"><h3>Teams · SharePoint</h3><p>Collaboration, sites internes, partage de documents.</p></div>
+    </div>
+    <div class="apprend reveal zoom">
+      <span class="etiquette">(En montée en compétences)</span>
+      <div class="apprend-grille">
+        <div><h3>HubSpot</h3><p>CRM, emailing et automatisation marketing : j'apprends à piloter la relation client et les campagnes de bout en bout.</p></div>
+        <div><h3>Claude (IA)</h3><p>Mon assistant au quotidien pour la recherche, la rédaction et l'organisation. Ce site a d'ailleurs été codé avec Claude.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="sac" class="bag">
+  <h2 class="bag-titre glisse" data-sens="-1" aria-hidden="true">What's in my bag</h2>
+  <div class="bag-intro reveal bas">
+    <span class="etiquette">(What's in my bag)</span>
+    <p>Mon studio tient dans un sac : <strong>prête à tourner, monter et publier où qu'on soit.</strong></p>
+  </div>
+  <div class="scene">
+    <div class="pastille" aria-hidden="true"><span>Prête<br>à tourner</span></div>
+    <figure class="item" style="--x:6%;--y:8%;--w:24%;--dx:-60vw;--dy:-20vh;--r:-35deg;--r2:-6deg;--v:-.18;--d:0s;--f:5s">
+      <div class="vole"><img src="images/bag-osmo.png" alt="Kit DJI Osmo Pocket 3"></div>
+      <figcaption><b>DJI Osmo Pocket 3</b>Tournages stabilisés</figcaption></figure>
+    <figure class="item" style="--x:38%;--y:4%;--w:8.5%;--dx:0;--dy:-70vh;--r:40deg;--r2:8deg;--v:.12;--d:.15s;--f:4.2s">
+      <div class="vole"><img src="images/bag-batterie.png" alt="Batterie externe"></div>
+      <figcaption><b>Batterie externe</b>Tourner toute la journée</figcaption></figure>
+    <figure class="item" style="--x:64%;--y:6%;--w:30%;--dx:70vw;--dy:-10vh;--r:30deg;--r2:-4deg;--v:-.1;--d:.3s;--f:6s">
+      <div class="vole"><img src="images/bag-macbook.png" alt="MacBook Air M1"></div>
+      <figcaption><b>MacBook Air M1</b>Montage et création</figcaption></figure>
+    <figure class="item" style="--x:12%;--y:52%;--w:17%;--dx:-70vw;--dy:30vh;--r:-50deg;--r2:5deg;--v:.2;--d:.45s;--f:4.6s">
+      <div class="vole"><img src="images/bag-iphone.png" alt="iPhone 14 Pro Max"></div>
+      <figcaption><b>iPhone 14 Pro Max</b>Photo, vidéo et réseaux en direct</figcaption></figure>
+    <figure class="item" style="--x:36%;--y:74%;--w:13%;--dx:0;--dy:70vh;--r:-25deg;--r2:-10deg;--v:-.15;--d:.6s;--f:5.4s">
+      <div class="vole"><img src="images/bag-disque.png" alt="Disque dur externe"></div>
+      <figcaption><b>Disque dur</b>Sauvegarde des rushs</figcaption></figure>
+    <figure class="item" style="--x:74%;--y:44%;--w:13%;--dx:70vw;--dy:40vh;--r:45deg;--r2:4deg;--v:.16;--d:.75s;--f:5s">
+      <div class="vole"><img src="images/bag-trepied.png" alt="Trépied"></div>
+      <figcaption><b>Trépied</b>Plans fixes et interviews</figcaption></figure>
+  </div>
+</section>
+
+<section id="contact" class="band blanc contact">
+  <span class="etiquette">(Contact)</span>
+  <h2 class="titre"><span class="reveal gauche" style="display:block">Travaillons</span><em class="reveal droite" style="display:block;transition-delay:.15s">ensemble</em></h2>
+  <p class="sous reveal bas">Basée en Guadeloupe et mobile dans l'Hexagone, ouverte au télétravail. Permis B. Je serais ravie d'échanger avec vous.</p>
+  <a class="mail reveal" href="mailto:lebouin.nathalie@hotmail.com">lebouin.nathalie@hotmail.com</a>
+  <a class="tel reveal" href="tel:+590690217432">+590 690 21 74 32</a>
+</section>
+<footer><span>© 2026 Nathalie Lebouin</span><span>Guadeloupe · Hexagone</span></footer>
+
+<div class="lightbox" id="lb"><img alt=""></div>
+
+<script>
+{
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Fin du chargement
+  setTimeout(() => document.body.classList.add('loaded'), reduit ? 0 : 900);
+
+  // Apparitions au défilement
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+  }), {threshold: .15});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  // Les photos découpées (clip-path) sont observées via un témoin non découpé
+  const obsPhoto = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.firstElementChild.classList.add('vu'); obsPhoto.unobserve(e.target); }
+  }), {threshold: .15});
+  document.querySelectorAll('[data-reveal]').forEach(el => {
+    const t = document.createElement('div'); el.before(t); t.appendChild(el); obsPhoto.observe(t);
+  });
+
+  // Texte qui s'allume mot par mot
+  const man = document.getElementById('manifeste');
+  const morceaux = [];
+  man.childNodes.forEach(n => {
+    const rose = n.nodeType === 1;
+    n.textContent.split(/(\s+)/).forEach(m => {
+      if (!m.trim()) { morceaux.push(m); return; }
+      morceaux.push(`<span class="m${rose ? ' rose' : ''}">${m}</span>`);
+    });
+  });
+  man.innerHTML = morceaux.join('');
+  const mots = [...man.querySelectorAll('.m')];
+
+  // Défilement horizontal des projets
+  const zone = document.getElementById('hzone'), piste = document.getElementById('piste');
+  const grand = () => innerWidth > 900;
+  const taille = () => {
+    zone.style.height = grand() ? (piste.scrollWidth - innerWidth + innerHeight) + 'px' : 'auto';
+  };
+  addEventListener('resize', taille);
+  addEventListener('load', taille);
+  taille();
+
+  const barre = document.getElementById('progress');
+  const auScroll = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    barre.style.width = (scrollY / max * 100) + '%';
+
+    const r = man.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (innerHeight * .85 - r.top) / (r.height + innerHeight * .4)));
+    const n = reduit ? mots.length : Math.round(p * mots.length);
+    mots.forEach((m, i) => m.classList.toggle('on', i < n));
+
+    if (grand()) {
+      const z = zone.getBoundingClientRect();
+      const course = piste.scrollWidth - innerWidth;
+      const q = Math.min(1, Math.max(0, -z.top / (zone.offsetHeight - innerHeight)));
+      piste.style.transform = `translateX(${-q * course}px)`;
+    }
+    if (!reduit) glisses.forEach(t => {
+      const r = t.getBoundingClientRect();
+      const q = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      t.style.transform = `translateX(${q * 25 * t.dataset.sens}vw)`;
+    });
+  };
+  const glisses = [...document.querySelectorAll('.glisse')];
+  addEventListener('scroll', auScroll, {passive: true});
+  auScroll();
+
+  // Sac : les objets arrivent quand la scène entre à l'écran, puis bougent en parallaxe
+  const scene = document.querySelector('.scene');
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { scene.classList.add('vu'); o.disconnect(); } }), {threshold: .25}).observe(scene);
+  const items = [...scene.querySelectorAll('.item')];
+  items.forEach(it => it.addEventListener('click', () => it.classList.toggle('touche')));
+  const parallaxe = () => {
+    if (reduit || !grand()) { items.forEach(it => it.style.translate = ''); return; }
+    const r = scene.getBoundingClientRect();
+    const q = r.top + r.height / 2 - innerHeight / 2;
+    items.forEach(it => it.style.translate = `0 ${q * it.style.getPropertyValue('--v')}px`);
+  };
+  addEventListener('scroll', parallaxe, {passive: true});
+  parallaxe();
+
+  // Parcours : couleur de fond selon l'étape au centre de l'écran + ligne qui se remplit
+  const fz = document.getElementById('frise');
+  const etapes = [...fz.querySelectorAll('.zz-etape')];
+  const zz = fz.querySelector('.zz'), remplir = document.getElementById('zzRemplir');
+  const majFrise = () => {
+    let actif = null;
+    etapes.forEach(e => {
+      const r = e.getBoundingClientRect();
+      if (r.top < innerHeight * .55 && r.bottom > innerHeight * .45) actif = e;
+    });
+    etapes.forEach(e => e.classList.toggle('actif', e === actif));
+    const zr = fz.getBoundingClientRect();
+    fz.dataset.fond = actif ? actif.dataset.fond : (zr.top > 0 ? '0' : fz.dataset.fond);
+    const r = zz.getBoundingClientRect();
+    remplir.style.height = Math.min(100, Math.max(0, (innerHeight / 2 - r.top) / r.height * 100)) + '%';
+  };
+  addEventListener('scroll', majFrise, {passive: true});
+  majFrise();
+
+  // Curseur
+  const c = document.getElementById('curseur');
+  addEventListener('mousemove', e => { c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px'; });
+  document.querySelectorAll('a,.proj,.outil,.exp,.item,.qualites span').forEach(el => {
+    el.addEventListener('mouseenter', () => c.classList.add('grand'));
+    el.addEventListener('mouseleave', () => c.classList.remove('grand'));
+  });
+
+  // Agrandir une image
+  const lb = document.getElementById('lb');
+  document.querySelectorAll('.proj .cadre img').forEach(img => img.addEventListener('click', () => {
+    lb.querySelector('img').src = img.src; lb.classList.add('ouvert');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('ouvert'));
+}
+</script>
+</body>
+</html>
